@@ -12,6 +12,8 @@ public class Main {
 
     static String email_pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
+    static String name_pattern = "^[a-zA-Z\\-]{3,}";
+
     public static void main(String[] args) {
         run();
     }
@@ -46,30 +48,37 @@ public class Main {
         System.out.print("Email: ");
         String email = scanner.nextLine();
 
-        if (isEmailValid(email)) {
-            Client client = buildClient(email);
-            System.out.println("New client: " + client.firstName + " " + client.lastName + " (" + client.email + ")");
+        System.out.print("First name: ");
+        String firstName = scanner.nextLine();
 
+        System.out.print("Last name: ");
+        String lastName = scanner.nextLine();
+
+        if (isEmailValid(email) && isNameValid(firstName) && isNameValid(lastName) ) {
+            Client client = buildClient(email, firstName, lastName);
+            System.out.println("New client: " + client.firstName + " " + client.lastName + " (" + client.email + ")");
         } else {
-            System.out.println("Provided email is invalid");
+            System.out.println("Provided email or name are invalid");
         }
     }
 
-     static Client buildClient(String email) {
+    static Client buildClient(String email, String firstName, String lastName) {
          Client client = new Client();
          client.email = email;
-
-         System.out.print("First name: ");
-         client.firstName = scanner.nextLine();
-
-         System.out.print("Last name: ");
-         client.lastName = scanner.nextLine();
+         client.firstName = firstName;
+         client.lastName = lastName;
          return client;
      }
 
      static boolean isEmailValid(String email) {
         Pattern pattern = Pattern.compile(email_pattern);
         Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    static boolean isNameValid(String name) {
+        Pattern pattern = Pattern.compile(name_pattern);
+        Matcher matcher = pattern.matcher(name);
         return matcher.matches();
     }
 }
