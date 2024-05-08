@@ -8,9 +8,9 @@ import java.util.regex.Pattern;
 
 public class ClientService {
 
-   private static String email_pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+   private static final String email_pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
-   private static String name_pattern = "^[a-zA-Z\\-]{3,}";
+   private static final String name_pattern = "^[a-zA-Z\\-]{3,}";
 
    public Client registerNewClient() {
        Client client = null;
@@ -26,7 +26,9 @@ public class ClientService {
 
         if (isEmailValid(email) && isNameValid(firstName) && isNameValid(lastName) ) {
             client = buildClient(email, firstName, lastName);
-            System.out.println("New client: " + client.getFirstName() + " " + client.getLastName() + " (" + client.getEmail() + ")");
+            System.out.println("New client: " + client.getFirstName() + " "
+                    + client.getLastName() + " ("
+                    + client.getEmail() + ")");
         } else {
             System.out.println("Provided email or name are invalid");
         }
