@@ -15,7 +15,7 @@ public class Client {
                 + ", lastName + " + lastName
                 + ", email + " + email
                 + ",\n\tpet + " + pet
-                + "\n)";
+                + "\n}";
     }
 
     @Override
