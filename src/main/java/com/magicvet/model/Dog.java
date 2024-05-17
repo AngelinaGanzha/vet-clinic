@@ -4,7 +4,21 @@ import java.util.Objects;
 
 public class Dog extends Pet{
 
+    public static final String xs = "XS";
+    public static final String s = "S";
+    public static final String m = "M";
+    public static final String l = "L";
+    public static final String xl = "XL";
+
     private String size;
+
+    public Dog () {
+
+    }
+
+    public Dog (String size) {
+        this.size = size;
+    }
 
     @Override
     public String toString() {
