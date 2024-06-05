@@ -39,6 +39,11 @@ public class ClientService {
         client.setEmail(email);
         client.setFirstName(firstName);
         client.setLastName(lastName);
+
+        System.out.print("Location: ");
+        String location = Main.scanner.nextLine();
+        client.setLocation(Client.Location.valueOf(location));
+
         return client;
     }
 
