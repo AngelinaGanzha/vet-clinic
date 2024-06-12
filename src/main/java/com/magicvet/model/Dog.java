@@ -1,5 +1,6 @@
 package main.java.com.magicvet.model;
 
+import java.util.Formatter;
 import java.util.Objects;
 
 public class Dog extends Pet{
@@ -21,8 +22,9 @@ public class Dog extends Pet{
                 + ", sex: " + getSex()
                 + ", age: " + getAge()
                 + ", name: " + getName()
-                + ", size: " + size
+                + ", size: " + getSize()
                 + ", ownerName: " + getOwnerName()
+                + ", regisrationDate = " + getRegistrationDate().format(formatter)
                 + "}";
     }
 
@@ -60,6 +62,18 @@ public class Dog extends Pet{
         private final int value;
         Size(int value) {
             this.value = value;
+        }
+
+        public static Size fromString (String value) {
+            for (Size size : values()){
+                if (size.toString().equals(value)){
+                    return size;
+                }
+            }
+
+            System.out.println("Unable to parse value '" + value + "'. Using default value: " + UNKNOWN);
+
+            return UNKNOWN;
         }
         public int getValue(){
             return value;
